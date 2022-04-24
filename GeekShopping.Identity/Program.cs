@@ -16,8 +16,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<MySQLContext>()
     .AddDefaultTokenProviders();
 
-
-builder.Services.AddIdentityServer(options =>
+var build = builder.Services.AddIdentityServer(options =>
 {
     options.Events.RaiseErrorEvents = true;
     options.Events.RaiseInformationEvents = true;
@@ -27,19 +26,23 @@ builder.Services.AddIdentityServer(options =>
 }).AddInMemoryIdentityResources(IdentityConfiguration.identityResources)
     .AddInMemoryApiScopes(IdentityConfiguration.ApiScopes)
     .AddInMemoryClients(IdentityConfiguration.Clients)
-    .AddAspNetIdentity<ApplicationUser>()
-    .AddDeveloperSigningCredential();
-
+    .AddAspNetIdentity<ApplicationUser>();
+    //.AddDeveloperSigningCredential();
 
 builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 
+//builder.Services.AddScoped<IProfileService, ProfileService>();
+
+build.AddDeveloperSigningCredential();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-var dbInitializerServices = app.Services.CreateScope().ServiceProvider.GetService<IDbInitializer>();
+//var dbInitializerServices = app.Services.CreateScope().ServiceProvider.GetService<IDbInitializer>();
+var scope = app.Services.CreateScope();
+var dbInitializer = scope.ServiceProvider.GetService<IDbInitializer>();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -55,7 +58,8 @@ app.UseRouting();
 app.UseIdentityServer();
 app.UseAuthorization();
 
-dbInitializerServices.Initialize();
+dbInitializer.Initialize();
+//dbInitializerServices.Initialize();
 
 app.MapControllerRoute(
     name: "default",

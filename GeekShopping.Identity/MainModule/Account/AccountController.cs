@@ -20,16 +20,15 @@ using Duende.IdentityServer.Test;
 using Microsoft.AspNetCore.Identity;
 using GeekShopping.IdentityServer.Model;
 using GeekShopping.IdentityServer.MainModule.Account;
-using System.Collections.Generic;
 using System.Security.Claims;
 
 namespace IdentityServerHost.Quickstart.UI
 {
-/// <summary>
-/// This sample controller implements a typical login/logout/provision workflow for local and external accounts.
-/// The login service encapsulates the interactions with the user data store. This data store is in-memory only and cannot be used for production!
-/// The interaction service provides a way for the UI to communicate with identityserver for validation and context retrieval
-/// </summary>
+    /// <summary>
+    /// This sample controller implements a typical login/logout/provision workflow for local and external accounts.
+    /// The login service encapsulates the interactions with the user data store. This data store is in-memory only and cannot be used for production!
+    /// The interaction service provides a way for the UI to communicate with identityserver for validation and context retrieval
+    /// </summary>
     [SecurityHeaders]
     [AllowAnonymous]
     public class AccountController : Controller
@@ -37,7 +36,7 @@ namespace IdentityServerHost.Quickstart.UI
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-
+        //private readonly TestUserStore _users;
         private readonly IIdentityServerInteractionService _interaction;
         private readonly IClientStore _clientStore;
         private readonly IAuthenticationSchemeProvider _schemeProvider;
@@ -50,12 +49,14 @@ namespace IdentityServerHost.Quickstart.UI
             IAuthenticationSchemeProvider schemeProvider,
             IIdentityProviderStore identityProviderStore,
             IEventService events,
-
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             RoleManager<IdentityRole> roleManager
             )
         {
+            // this is where you would plug in your own custom identity management library (e.g. ASP.NET Identity)
+           // _users = users ?? throw new Exception("Please call 'AddTestUsers(TestUsers.Users)' on the IIdentityServerBuilder in Startup or remove the TestUserStore from the AccountController.");
+
             _interaction = interaction;
             _clientStore = clientStore;
             _schemeProvider = schemeProvider;
@@ -129,14 +130,16 @@ namespace IdentityServerHost.Quickstart.UI
                     model.Password,
                     model.RememberLogin,
                     lockoutOnFailure: false);
+
+                // validate username/password against in-memory store
                 if (result.Succeeded)
                 {
                     var user = await _userManager.FindByNameAsync(model.Username);
                     await _events.RaiseAsync(
-                        new UserLoginSuccessEvent(user.UserName,
-                            user.Id,
-                            user.UserName,
-                            clientId: context?.Client.ClientId));
+                        new UserLoginSuccessEvent(user.UserName, 
+                        user.Id, 
+                        user.UserName, 
+                        clientId: context?.Client.ClientId));
 
                     // only set explicit expiration here if user chooses "remember me". 
                     // otherwise we rely upon expiration configured in cookie middleware.
@@ -256,6 +259,7 @@ namespace IdentityServerHost.Quickstart.UI
             return View();
         }
 
+
         [HttpGet]
         public async Task<IActionResult> Register(string returnUrl)
         {
@@ -280,10 +284,11 @@ namespace IdentityServerHost.Quickstart.UI
                     Email = model.Email,
                     EmailConfirmed = true,
                     FirstName = model.FirstName,
-                    LastName = model.LastName
+                    LastName = model.LastName                    
                 };
 
                 var result = await _userManager.CreateAsync(user, model.Password);
+
                 if (result.Succeeded)
                 {
                     if (!_roleManager.RoleExistsAsync(model.RoleName).GetAwaiter().GetResult())
@@ -291,7 +296,7 @@ namespace IdentityServerHost.Quickstart.UI
                         var userRole = new IdentityRole
                         {
                             Name = model.RoleName,
-                            NormalizedName = model.RoleName,
+                            NormalizedName = model.RoleName
 
                         };
                         await _roleManager.CreateAsync(userRole);
@@ -411,6 +416,7 @@ namespace IdentityServerHost.Quickstart.UI
                 ExternalProviders = providers.ToArray()
             };
         }
+
 
         /*****************************************/
         /* helper APIs for the AccountController */
