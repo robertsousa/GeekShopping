@@ -25,6 +25,8 @@ namespace GeekShopping.Web.Controllers
             return View(await FindUserCart());
         }
 
+        
+
         [HttpPost]
         [ActionName("ApplyCoupon")]
         public async Task<IActionResult> ApplyCoupon(CartViewModel model)
@@ -73,6 +75,12 @@ namespace GeekShopping.Web.Controllers
             }
 
             return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Checkout()
+        {
+            return View(await FindUserCart());
         }
 
         private async Task<CartViewModel> FindUserCart()
