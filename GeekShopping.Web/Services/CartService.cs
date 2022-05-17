@@ -8,7 +8,7 @@ namespace GeekShopping.Web.Services
     public class CartService : ICartService
     {
         private readonly HttpClient _client;
-        public const string BasePath = "api/v1/cart";
+        public const string BasePath = "api/v1/Cart";
 
         public CartService(HttpClient client)
         {
@@ -28,7 +28,8 @@ namespace GeekShopping.Web.Services
             var response = await _client.PostAsJson($"{BasePath}/add-cart", model);
             if (response.IsSuccessStatusCode)
                 return await response.ReadContentAs<CartViewModel>();
-            else throw new Exception("Something went wrong when calling API.");
+            else 
+                throw new Exception("Something went wrong when calling API to addItemToCart.");
         }
 
         public async Task<CartViewModel> UpdateCart(CartViewModel model, string token)
@@ -37,7 +38,8 @@ namespace GeekShopping.Web.Services
             var response = await _client.PutAsJson($"{BasePath}/update-cart", model);
             if (response.IsSuccessStatusCode)
                 return await response.ReadContentAs<CartViewModel>();
-            else throw new Exception("Something went wrong when calling API.");
+            else 
+                throw new Exception("Something went wrong when calling API.");
         }
         public async Task<bool> RemoveFromCart(long cartId, string token)
         {
@@ -48,15 +50,18 @@ namespace GeekShopping.Web.Services
             else throw new Exception("Something went wrong when calling API.");
         }
 
-        
-        public async Task<CartHeaderViewModel> Checkout(CartHeaderViewModel model, string token)
-        {
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            var response = await _client.PostAsJson($"{BasePath}/checkout", model);
-            if (response.IsSuccessStatusCode)
-                return await response.ReadContentAs<CartHeaderViewModel>();
-            else throw new Exception("Something went wrong when calling API.");
-        }
+        //public async Task<CartViewModel> Checkout(CartHeaderViewModel model, string token)
+        //{
+        //    //_client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+        //    //var response = await _client.PostAsJson($"{BasePath}/checkout", model);
+
+        //    //if (response.IsSuccessStatusCode)
+        //    //    return await response.ReadContentAs<CartHeaderViewModel>();
+        //    //else if (response.StatusCode.ToString().Equals("PrecondictionFailed"))
+        //    //    return "Coupon price has changed, please confirm!";
+        //    //else 
+        //    //    throw new Exception("Something went wrong when calling API");
+        //}
 
         public async Task<bool> ClearCart(string userId, string token)
         {
@@ -78,6 +83,11 @@ namespace GeekShopping.Web.Services
             if (response.IsSuccessStatusCode)
                 return await response.ReadContentAs<bool>();
             else throw new Exception("Something went wrong when calling API.");
-        }        
+        }
+
+        public Task<CartViewModel> Checkout(CartHeaderViewModel cartHeader, string token)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

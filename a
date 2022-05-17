@@ -1,0 +1,68 @@
+[33m57937ef[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m Implementando o chekout
+[33m353e7da[m Preparando os serviços para integraçaõ com RabbitMQ
+[33me52ad2a[m Finalizazndo a tela de checkout
+[33m9c6b5b7[m Recuperar e aplicar cupon de desconto
+[33m82978e9[m Consumindo o microserviço cupon de desconto
+[33m4cd6a62[m Applicando apply e remove no contrroller e no serviço
+[33m5da4edc[m Applicando apply e remove na view de Carrinho de compra
+[33m42f2637[m Implementando apply e removeCoupon
+[33m55307da[m Implementando o couponController
+[33m0239e46[m Criando a migration SeedCouponDatabase
+[33m09f286a[m Configurando o program e e DbContext de couponAPI
+[33m33fd4c5[m Criando o microserviço de couponAPI
+[33m8906f05[m Removendo item do carrinho de compra
+[33mbb8ffbe[m Finalizando a tela do carrinho de compra
+[33mcb52f3a[m Iniciando a tela do carrinho de compra
+[33m66fc430[m Criando o metodo pra buscar o carrinho de compra do usuario
+[33me5dbe19[m Adicionando o carrinho de compra
+[33mdce63aa[m Ajustando os bugs do carrinho
+[33m56be356[m Adicionando item ao carrinho
+[33mbe75fb6[m implementando a interface ICartService
+[33mb3e62d3[m Criando a assinatura de ICartService
+[33m5ca2d6a[m Criando os viewModels do carrinho de compra
+[33m93c4d45[m Implementado o controller do carrinho de compra
+[33m099cac4[m Implementado o metodo para limpar  do carrinho de compra
+[33m8bb411b[m Implementado o metodo para remover item do carrinho de compra
+[33m8b3d310[m Implementado o metodo para obter o carrinho de compra
+[33m8ecb033[m Implementando o save or update cartAPI
+[33m50a84b2[m Criando VO's e ajustando o automapper
+[33md00d8e0[m Ajustando DbContext e aplicando a migration
+[33m9dbbb22[m Mapenado a entidade do carrinho de compra
+[33mf33a503[m Configurando o startup e DbContext de CartAPI
+[33m9ea8246[m Criação do CartAPI
+[33m19c9408[m Adicionado a Vieww  dww Details
+[33m90a7fa9[m Ajuste da tela de listagem, na tela inicial
+[33m9505a22[m Adicionando a lista de produto na tela principal
+[33m7c9b4f8[m testando integração em web e product
+[33m58a0848[m Adicionando token as requisições
+[33m359aa7b[m Ajustando a classe AccountContrroller para suportar login
+[33m1cfef0c[m Adicionado o projeto IdentityServer
+[33m980e6a9[m Arquivos adicionado ao projeto Identity
+[33ma862791[m Adicionado o projeto GeekShopping.Identity
+[33m21db0dc[m Tela de deletar produtos
+[33m3ebd77f[m Tela de atualizar produtos
+[33m5cfe37b[m Tela de adicionao produtos
+[33m9a87c0e[m Tela de listagem de produtos
+[33mb8d6e4a[m Criando o productIndex
+[33mcc09ce4[m Finalizaado o produtService
+[33m0094186[m Implementando post e putAsJson em HttpClientExtensions
+[33ma84f459[m Criando a Classe HttpClienteExtension
+[33meba5416[m Criando o IProductService
+[33m3866d64[m Definindo o productModel
+[33m9dcf221[m Adicionado a seedMigration de produtos
+[33m2668419[m Implementado os metodos do ProductContrtroller
+[33ma16c7dd[m Adicionado algumas imagens de produtos
+[33m5d19475[m Implementando o restante do repositorio de produtos
+[33m3ab66b8[m Implementando FindAll e findByID de produto
+[33m73e5ae4[m Adicionado a classe MappingConfig
+[33me9d2025[m Adicionado os metodos na interface IProductRepository
+[33mf0be4a6[m Criação dos VO's do microserviços de produtos
+[33ma93b011[m Adicionando a migration de productAPI
+[33md5e0edf[m Criado a classe Product e adicionado ao mapeamento
+[33m7c7a63f[m Definindo a strring de conexao e a injeção de dependencia
+[33mce7057e[m Adicionado a classe BaseEntity
+[33maa48315[m Adicionado a classe BaseEntity
+[33m793aab8[m adicionado os pacotes productAPI
+[33mbad9164[m Criando o projeto GeekShopping.ProductAPI
+[33m85dc63c[m Criando o projeto
+[33m3e8f1fd[m Initial commit

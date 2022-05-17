@@ -19,18 +19,19 @@ namespace GeekShopping.CartAPI.Repository
 
         public async Task<bool> ApplyCoupon(string userId, string couponCode)
         {
-            var  header = await _context.CartHeaders
-                .FirstOrDefaultAsync(c => c.UserId == userId);
+            //var  header = await _context.CartHeaders
+            //    .FirstOrDefaultAsync(c => c.UserId == userId);
 
-            if ( header != null)
-            {
-                header.CouponCode = couponCode;
-                _context.CartHeaders.Update(header);
-                await _context.SaveChangesAsync();
-                return true;
-            }
+            //if ( header != null)
+            //{
+            //    header.CouponCode = couponCode;
+            //    _context.CartHeaders.Update(header);
+            //    await _context.SaveChangesAsync();
+            //    return true;
+            //}
 
-            return false;
+            //return false;
+            throw new NotImplementedException();
         }
 
         public async Task<bool> ClearCart(string userId)
@@ -68,25 +69,27 @@ namespace GeekShopping.CartAPI.Repository
 
         public async Task<bool> RemoveCoupon(string userId)
         {
-            var header = await _context.CartHeaders
-                .FirstOrDefaultAsync(c => c.UserId == userId);
+            //var header = await _context.CartHeaders
+            //    .FirstOrDefaultAsync(c => c.UserId == userId);
 
-            if (header != null)
-            {
-                header.CouponCode = "";
-                _context.CartHeaders.Update(header);
-                await _context.SaveChangesAsync();
-                return true;
-            }
+            //if (header != null)
+            //{
+            //    header.CouponCode = "";
+            //    _context.CartHeaders.Update(header);
+            //    await _context.SaveChangesAsync();
+            //    return true;
+            //}
 
-            return false;
+            //return false;
+            throw new NotImplementedException();
         }
 
         public async Task<bool> RemoveFromCart(long cartDetailsId)
         {
             try
             {
-                CartDetail cartDetail = await _context.CartDetails.FirstOrDefaultAsync(c => c.Id == cartDetailsId);
+                CartDetail cartDetail = await _context.CartDetails
+                    .FirstOrDefaultAsync(c => c.Id == cartDetailsId);
 
                 int total = _context.CartDetails
                     .Where(c => c.CartHeaderId == cartDetail.CartHeaderId).Count();
