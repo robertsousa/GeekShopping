@@ -43,7 +43,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "GeekShopping.ProductAPI"));
 }
-
+app.UseHttpsRedirection();
 app.MapControllers();
 
 app.Run();
