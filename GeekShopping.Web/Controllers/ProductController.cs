@@ -68,7 +68,7 @@ namespace GeekShopping.Web.Controllers
         {
             
             var response = await _productService.DeleteProductById(model.Id);
-            if (response != null) return RedirectToAction(nameof(ProductIndex));
+            if (response != false) return RedirectToAction(nameof(ProductIndex));
             
             return View(model);
         }
