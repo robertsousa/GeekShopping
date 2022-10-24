@@ -1,12 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace GeekShopping.CartAPI.Model.Base
+namespace GeekShopping.CartAPI.Model
 {
     [Table("product")]
-    public class Product 
+    public class Product
     {
-        [Key,DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Column("id")]
         public long Id { get; set; }
 
@@ -17,7 +17,7 @@ namespace GeekShopping.CartAPI.Model.Base
 
         [Column("price")]
         [Required]
-        [Range(1,10000)]
+        [Range(1, 10000)]
         public decimal Price { get; set; }
 
         [Column("description")]

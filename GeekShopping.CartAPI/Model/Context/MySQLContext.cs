@@ -1,5 +1,5 @@
 ﻿
-using GeekShopping.CartAPI.Model.Base;
+using GeekShopping.CartAPI.Data.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 
 namespace GeekShopping.CartAPI.Model.Context
